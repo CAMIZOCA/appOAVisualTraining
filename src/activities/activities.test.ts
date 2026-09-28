@@ -2,8 +2,10 @@
 import { sanitizeParams } from './core/config';
 import { center, maxRadius } from './core/geometry';
 import { EIGHT_DIRECTIONS, FOUR_DIRECTIONS } from './core/paths';
+import { validateProgram } from './core/program';
 import { positionAt, segmentEnds } from './core/timeline';
 import type { BuildContext, MotionSegment } from './core/types';
+import { LAB_DEFAULTS, labActivity, labParamsFrom } from './lab/labDefinition';
 import {
   cellDistance,
   JUMP_RANGES,
@@ -212,5 +214,34 @@ describe('H pattern', () => {
       ctx,
     );
     expect(challenge.guides).toHaveLength(0);
+  });
+});
+
+describe('Activity Lab', () => {
+  const paths = [
+    'horizontal',
+    'vertical',
+    'diagonal',
+    'circle',
+    'infinity',
+    'star',
+    'h',
+    'random',
+  ] as const;
+
+  it.each(paths)('%s roughly honors the requested duration', (path) => {
+    const params = labParamsFrom({ path, durationSec: 30 });
+    const program = labActivity.build(params, ctx);
+    expect(validateProgram(program, canvas, 0.1)).toEqual([]);
+    expect(program.totalMs).toBeGreaterThanOrEqual(25_000);
+    expect(program.totalMs).toBeLessThan(60_000);
+  });
+
+  it('restores stale persisted configs safely', () => {
+    expect(labParamsFrom(null)).toEqual(LAB_DEFAULTS);
+    expect(labParamsFrom({ path: 'spiral', durationSec: 9999 })).toMatchObject({
+      path: 'horizontal',
+      durationSec: 300,
+    });
   });
 });

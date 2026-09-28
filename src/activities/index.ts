@@ -4,6 +4,7 @@
  */
 import { createRegistry } from './core/registry';
 import type { AnyActivityDefinition } from './core/types';
+import { labActivity } from './lab/labDefinition';
 import { randomSaccades } from './saccades/randomSaccades';
 import { saccadesHorizontal, saccadesVertical } from './saccades/twoPointSaccades';
 import { circleClockwise, circleCounterclockwise } from './tracking/circle';
@@ -13,7 +14,7 @@ import { infinity } from './tracking/infinity';
 import { star } from './tracking/star';
 import { verticalTracking } from './tracking/vertical';
 
-/** Display order in the Activities list. */
+/** Display order in the Activities list (hidden definitions are not listed). */
 export const ACTIVITY_DEFINITIONS: AnyActivityDefinition[] = [
   horizontalTracking,
   verticalTracking,
@@ -25,6 +26,8 @@ export const ACTIVITY_DEFINITIONS: AnyActivityDefinition[] = [
   saccadesHorizontal,
   saccadesVertical,
   randomSaccades,
+  // Hidden: reachable from the Activity Lab screen only.
+  labActivity,
 ];
 
 export const activities = createRegistry(ACTIVITY_DEFINITIONS);

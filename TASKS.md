@@ -44,10 +44,10 @@ Legend: `[x]` done · `[ ]` pending. Each phase closes with `npm run verify` + c
 
 ## Phase 3 — Activity Lab
 
-- [ ] Lab definition (8 paths) using shared path builders
-- [ ] Lab screen (ParamForm + run options) with persisted config
-- [ ] Lab-mode player (no session record)
-- [ ] Developer mode: advanced parameter panel, voice text overrides, debug overlay
+- [x] Lab definition (8 paths) using shared path builders
+- [x] Lab screen (ParamForm + run options + live path preview) with persisted config
+- [x] Lab-mode player (no session record)
+- [x] Developer mode: advanced parameter panel, voice text overrides, debug overlay
 
 ## Phase 4 — Relaxation and accommodation activities
 
