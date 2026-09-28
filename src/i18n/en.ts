@@ -133,6 +133,7 @@ export const en: Record<keyof typeof es, string> = {
   'sessions.completed': 'Completed',
   'sessions.incomplete': 'Incomplete',
   'sessions.count': '{n} activities',
+  'sessions.countOne': '1 activity',
   'sessions.totalTime': 'Total time',
 
   'settings.title': 'Settings',

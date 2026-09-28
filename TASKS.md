@@ -59,10 +59,10 @@ Legend: `[x]` done · `[ ]` pending. Each phase closes with `npm run verify` + c
 
 ## Phase 5 — History and settings
 
-- [ ] Session saving + comfort feedback
-- [ ] Sessions screen (today, week, recent, stats)
-- [ ] Home dashboard (continue, quick, recommended, recent, stats)
-- [ ] Settings (all options), Developer screen, About, reset local data
+- [x] Session saving + comfort feedback
+- [x] Sessions screen (today, week, recent, stats)
+- [x] Home dashboard (continue, quick, recommended, recent, stats)
+- [x] Settings (all options), Developer screen, About, reset local data
 
 ## Phase 6 — QA and polish
 

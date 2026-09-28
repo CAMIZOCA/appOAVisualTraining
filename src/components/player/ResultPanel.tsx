@@ -4,17 +4,10 @@ import type { Difficulty } from '@/activities/core/types';
 import { AppText, Button, Icon, Screen } from '@/components/ui';
 import { useT } from '@/i18n';
 import { radius, spacing, touch, useColors } from '@/theme';
-import { COMFORT_OPTIONS, type Comfort } from '@/types/session';
+import { COMFORT_ICONS, COMFORT_OPTIONS, type Comfort } from '@/types/session';
 import { formatDuration } from '@/utils/format';
 
 import type { RunResult } from './ActivityRun';
-
-const COMFORT_ICONS: Record<Comfort, string> = {
-  comfortable: 'emoticon-happy-outline',
-  slightFatigue: 'emoticon-neutral-outline',
-  moderateFatigue: 'emoticon-sad-outline',
-  discomfort: 'alert-circle-outline',
-};
 
 interface ResultPanelProps {
   title: string;

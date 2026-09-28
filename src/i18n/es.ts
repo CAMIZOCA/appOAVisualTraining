@@ -134,6 +134,7 @@ export const es = {
   'sessions.completed': 'Completada',
   'sessions.incomplete': 'Incompleta',
   'sessions.count': '{n} actividades',
+  'sessions.countOne': '1 actividad',
   'sessions.totalTime': 'Tiempo total',
 
   'settings.title': 'Ajustes',

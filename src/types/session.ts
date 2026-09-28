@@ -9,6 +9,14 @@ export const COMFORT_OPTIONS: Comfort[] = [
   'discomfort',
 ];
 
+/** MaterialCommunityIcons glyph per comfort answer (always shown with its label). */
+export const COMFORT_ICONS: Record<Comfort, string> = {
+  comfortable: 'emoticon-happy-outline',
+  slightFatigue: 'emoticon-neutral-outline',
+  moderateFatigue: 'emoticon-sad-outline',
+  discomfort: 'alert-circle-outline',
+};
+
 export interface SessionRecord {
   id: string;
   activityId: string;
