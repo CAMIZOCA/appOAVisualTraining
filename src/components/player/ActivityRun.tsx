@@ -239,14 +239,17 @@ function Runner({
     };
   }, [handleStop, handlePause]);
 
-  const seg = engine.segmentIndex >= 0 ? program.segments[engine.segmentIndex] : undefined;
-  const scene = seg?.kind === 'scene' ? seg : null;
-  const stepSecondsLeft = scene
-    ? Math.max(0, Math.ceil((engine.ends[engine.segmentIndex] - engine.tickElapsed) / 1000))
-    : 0;
-  const targetSize = resolveTargetSizePx(run);
   const paused = status === 'paused';
   const inCountdown = status === 'countdown' || (paused && engine.segmentIndex < 0);
+  // During the countdown, preview the first step (e.g. the near letter) so the user can prepare.
+  const sceneIndex = engine.segmentIndex >= 0 ? engine.segmentIndex : inCountdown ? 0 : -1;
+  const seg = sceneIndex >= 0 ? program.segments[sceneIndex] : undefined;
+  const scene = seg?.kind === 'scene' ? seg : null;
+  const stepSecondsLeft =
+    scene && engine.segmentIndex >= 0
+      ? Math.max(0, Math.ceil((engine.ends[engine.segmentIndex] - engine.tickElapsed) / 1000))
+      : 0;
+  const targetSize = resolveTargetSizePx(run);
 
   return (
     <View style={StyleSheet.absoluteFill}>
@@ -296,22 +299,20 @@ function Runner({
         ) : null}
         {scene ? (
           <SceneStage
-            key={engine.segmentIndex}
+            key={sceneIndex}
             segment={scene}
             text={prompt(scene.text)}
             colors={colors}
             stepSecondsLeft={stepSecondsLeft}
             reduceMotion={reduceMotion}
             progress={engine.shared.progress}
-            targetType={run.targetType}
-            targetSize={targetSize}
           />
         ) : null}
         {run.debug ? (
           <DebugOverlay
             snapshot={debug}
             status={status}
-            phase={seg?.phase ?? (inCountdown ? 'countdown' : '')}
+            phase={inCountdown ? 'countdown' : (seg?.phase ?? '')}
             segmentCount={program.segments.length}
             totalMs={program.totalMs}
             canvas={canvas}

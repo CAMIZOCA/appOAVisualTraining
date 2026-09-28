@@ -1,4 +1,6 @@
 /** Behaviour tests for specific activities. */
+import { NEAR_LETTERS, nearFar, nearLetters } from './accommodation/nearFar';
+import { CONVERGENCE_STEPS, convergenceGuided } from './convergence/convergenceGuided';
 import { sanitizeParams } from './core/config';
 import { center, maxRadius } from './core/geometry';
 import { EIGHT_DIRECTIONS, FOUR_DIRECTIONS } from './core/paths';
@@ -12,6 +14,8 @@ import {
   randomSaccadeSequence,
   randomSaccades,
 } from './saccades/randomSaccades';
+import { blinkReset } from './relaxation/blinkReset';
+import { visualBreak } from './relaxation/visualBreak';
 import { saccadesHorizontal, saccadesVertical } from './saccades/twoPointSaccades';
 import { circleClockwise, circleCounterclockwise } from './tracking/circle';
 import { hPattern } from './tracking/hPattern';
@@ -243,5 +247,52 @@ describe('Activity Lab', () => {
       path: 'horizontal',
       durationSec: 300,
     });
+  });
+});
+
+describe('accommodation, convergence and relaxation', () => {
+  it('near/far alternates letter and dimmed far steps with the configured timings', () => {
+    const p = nearFar.build(sanitizeParams(nearFar), ctx);
+    expect(p.segments).toHaveLength(10);
+    p.segments.forEach((s, i) => {
+      expect(s.kind).toBe('scene');
+      if (s.kind !== 'scene') return;
+      expect(s.scene).toBe(i % 2 === 0 ? 'letter' : 'far');
+      expect(s.durationMs).toBe(5000);
+      expect(s.cue?.voice).toBeDefined();
+    });
+    expect(p.segments[0]).toMatchObject({ letter: 'E', text: 'focus' });
+    expect(p.segments[2]).toMatchObject({ text: 'returnFocus' });
+  });
+
+  it('near/far random letters come from the allowed set without repeats', () => {
+    const letters = nearLetters('random', 50, 3);
+    letters.forEach((l, i) => {
+      expect(NEAR_LETTERS).toContain(l);
+      if (i > 0) expect(l).not.toBe(letters[i - 1]);
+    });
+  });
+
+  it('guided convergence spreads the six voice steps over the timer', () => {
+    const p = convergenceGuided.build(sanitizeParams(convergenceGuided), ctx);
+    expect(p.totalMs).toBe(30_000);
+    expect(p.segments.map((s) => s.cue?.voice)).toEqual(CONVERGENCE_STEPS.map((s) => s.key));
+    expect(p.segments.every((s) => s.kind === 'scene' && s.scene === 'convergence')).toBe(true);
+  });
+
+  it('blink reset lasts 30–60 s by default', () => {
+    const p = blinkReset.build(sanitizeParams(blinkReset), ctx);
+    expect(p.totalMs).toBeGreaterThanOrEqual(30_000);
+    expect(p.totalMs).toBeLessThanOrEqual(60_000);
+    expect(p.segments.map((s) => s.cue?.voice)).toEqual(
+      expect.arrayContaining(['relax', 'close', 'open', 'blink', 'closeAgain']),
+    );
+  });
+
+  it('visual break is 2 minutes: 20/20/30/20/20/10 s with countdowns', () => {
+    const p = visualBreak.build(sanitizeParams(visualBreak), ctx);
+    expect(p.totalMs).toBe(120_000);
+    expect(p.segments.map((s) => s.durationMs / 1000)).toEqual([20, 20, 30, 20, 20, 10]);
+    expect(p.segments.every((s) => s.kind === 'scene' && s.showCountdown)).toBe(true);
   });
 });

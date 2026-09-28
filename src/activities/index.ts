@@ -2,9 +2,13 @@
  * Activity registry. To add an activity: create its definition module and add it here —
  * the Activities list, Player, Developer mode, history and definition tests pick it up.
  */
+import { nearFar } from './accommodation/nearFar';
+import { convergenceGuided } from './convergence/convergenceGuided';
 import { createRegistry } from './core/registry';
 import type { AnyActivityDefinition } from './core/types';
 import { labActivity } from './lab/labDefinition';
+import { blinkReset } from './relaxation/blinkReset';
+import { visualBreak } from './relaxation/visualBreak';
 import { randomSaccades } from './saccades/randomSaccades';
 import { saccadesHorizontal, saccadesVertical } from './saccades/twoPointSaccades';
 import { circleClockwise, circleCounterclockwise } from './tracking/circle';
@@ -26,6 +30,10 @@ export const ACTIVITY_DEFINITIONS: AnyActivityDefinition[] = [
   saccadesHorizontal,
   saccadesVertical,
   randomSaccades,
+  nearFar,
+  convergenceGuided,
+  blinkReset,
+  visualBreak,
   // Hidden: reachable from the Activity Lab screen only.
   labActivity,
 ];

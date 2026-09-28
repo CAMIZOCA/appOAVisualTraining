@@ -11,7 +11,7 @@ import Animated, {
   type SharedValue,
 } from 'react-native-reanimated';
 
-import type { SceneSegment, TargetType } from '@/activities/core/types';
+import type { SceneSegment } from '@/activities/core/types';
 import { Icon } from '@/components/ui';
 import { spacing, typography, type CanvasColors } from '@/theme';
 
@@ -25,8 +25,6 @@ interface SceneStageProps {
   stepSecondsLeft: number;
   reduceMotion: boolean;
   progress: SharedValue<number>;
-  targetType: TargetType;
-  targetSize: number;
 }
 
 const SCENE_ICONS: Partial<Record<SceneSegment['scene'], string>> = {
@@ -109,8 +107,6 @@ export function SceneStage({
   stepSecondsLeft,
   reduceMotion,
   progress,
-  targetType,
-  targetSize,
 }: SceneStageProps) {
   const isFar = segment.scene === 'far';
   const fg = isFar ? '#F1F5F2' : colors.target;
@@ -136,8 +132,8 @@ export function SceneStage({
     case 'convergence':
       visual = (
         <TargetShape
-          type={segment.letter ? 'letterE' : targetType}
-          size={segment.sizePx ?? Math.max(targetSize, 40)}
+          type={segment.letter ? 'letterE' : 'dotCenter'}
+          size={segment.sizePx ?? 48}
           color={colors.target}
           inner={colors.targetInner}
         />

@@ -51,11 +51,11 @@ Legend: `[x]` done · `[ ]` pending. Each phase closes with `npm run verify` + c
 
 ## Phase 4 — Relaxation and accommodation activities
 
-- [ ] Scene stage (letter, far, eyes closed, blink, breathe, relax, message, convergence)
-- [ ] Near / far focus
-- [ ] Guided convergence
-- [ ] Blink reset
-- [ ] Visual break
+- [x] Scene stage (letter, far, eyes closed, blink, breathe, relax, message, convergence)
+- [x] Near / far focus
+- [x] Guided convergence
+- [x] Blink reset
+- [x] Visual break
 
 ## Phase 5 — History and settings
 
