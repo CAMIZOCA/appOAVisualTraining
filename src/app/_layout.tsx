@@ -1,18 +1,49 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
+import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import { useHydrated } from '@/hooks/useHydrated';
+import { useT } from '@/i18n';
+import { useColors } from '@/theme';
 
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync().catch(() => {});
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+export default function RootLayout() {
+  const hydrated = useHydrated();
+  const colors = useColors();
+  const { t } = useT();
+
+  useEffect(() => {
+    if (hydrated) SplashScreen.hideAsync().catch(() => {});
+  }, [hydrated]);
+
+  if (!hydrated) return null;
+
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
+    <>
+      <StatusBar style="dark" />
+      <Stack
+        screenOptions={{
+          headerStyle: { backgroundColor: colors.background },
+          headerTintColor: colors.text,
+          headerShadowVisible: false,
+          headerBackButtonDisplayMode: 'minimal',
+          contentStyle: { backgroundColor: colors.background },
+        }}>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="activity/[id]"
+          options={{ headerShown: false, gestureEnabled: false, animation: 'fade' }}
+        />
+        <Stack.Screen name="lab" options={{ title: t('lab.title') }} />
+        <Stack.Screen name="developer" options={{ title: t('dev.title') }} />
+        <Stack.Screen name="about" options={{ title: t('about.title') }} />
+        <Stack.Screen
+          name="safety"
+          options={{ headerShown: false, gestureEnabled: false, animation: 'fade' }}
+        />
+      </Stack>
+    </>
   );
 }
