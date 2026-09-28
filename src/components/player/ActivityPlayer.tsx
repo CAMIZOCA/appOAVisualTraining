@@ -13,7 +13,7 @@ import { createSessionId, useSessions } from '@/store/sessionsStore';
 import { useSettings } from '@/store/settingsStore';
 import type { Comfort } from '@/types/session';
 
-import { ActivityRun, CONTROLS_HEIGHT, HUD_HEIGHT, type RunResult } from './ActivityRun';
+import { ActivityRun, estimateCanvas, type RunResult } from './ActivityRun';
 import { PreActivityPanel } from './PreActivityPanel';
 import { ResultPanel } from './ResultPanel';
 
@@ -69,24 +69,9 @@ export function ActivityPlayer({
 
   // Estimate with the canvas this device will actually have.
   const estimatedMs = useMemo(() => {
-    const canvas = {
-      width: window.width,
-      height: Math.max(
-        200,
-        window.height - insets.top - insets.bottom - HUD_HEIGHT - CONTROLS_HEIGHT,
-      ),
-    };
+    const canvas = estimateCanvas(window, insets);
     return estimateDurationMs(definition, params, canvas, safeMargin, reduceMotion);
-  }, [
-    definition,
-    params,
-    window.width,
-    window.height,
-    insets.top,
-    insets.bottom,
-    safeMargin,
-    reduceMotion,
-  ]);
+  }, [definition, params, window, insets, safeMargin, reduceMotion]);
 
   const onParamsChange = (next: ParamValues) => {
     setParams(next);

@@ -1,6 +1,12 @@
-import { useKeepAwake } from 'expo-keep-awake';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AppState, BackHandler, StyleSheet, View, type LayoutChangeEvent } from 'react-native';
+import {
+  AppState,
+  BackHandler,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+  type LayoutChangeEvent,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { sanitizeMargin } from '@/activities/core/geometry';
@@ -14,6 +20,7 @@ import type {
   Size,
 } from '@/activities/core/types';
 import { useActivityEngine, type DebugSnapshot } from '@/hooks/useActivityEngine';
+import { useScreenAwake } from '@/hooks/useScreenAwake';
 import { useT } from '@/i18n';
 import { haptic } from '@/services/haptics';
 import { playTick, preloadSounds, stopSounds } from '@/services/sound';
@@ -31,6 +38,20 @@ import { VisualTarget } from './VisualTarget';
 
 export const HUD_HEIGHT = 72;
 export const CONTROLS_HEIGHT = touch.primary + spacing.md * 2;
+
+/** Canvas size implied by the fixed layout; refined by onLayout once measured. */
+export function estimateCanvas(
+  window: { width: number; height: number },
+  insets: { top: number; bottom: number },
+): Size {
+  return {
+    width: Math.round(window.width),
+    height: Math.max(
+      200,
+      Math.round(window.height - insets.top - insets.bottom - HUD_HEIGHT - CONTROLS_HEIGHT),
+    ),
+  };
+}
 
 export interface RunResult {
   completed: boolean;
@@ -57,7 +78,8 @@ interface ActivityRunProps {
  */
 export function ActivityRun(props: ActivityRunProps) {
   const insets = useSafeAreaInsets();
-  const [canvas, setCanvas] = useState<Size | null>(null);
+  const window = useWindowDimensions();
+  const [canvas, setCanvas] = useState<Size>(() => estimateCanvas(window, insets));
   const colors = canvasThemes[props.run.canvasTheme];
 
   const onLayout = (e: LayoutChangeEvent) => {
@@ -98,7 +120,7 @@ function Runner({
   canvas,
   colors,
 }: ActivityRunProps & { canvas: Size; colors: CanvasColors }) {
-  useKeepAwake();
+  useScreenAwake();
   const insets = useSafeAreaInsets();
   const { t, l, lang } = useT();
   const reduceMotion = useSettings((s) => s.reduceMotion);

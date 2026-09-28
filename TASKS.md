@@ -34,13 +34,13 @@ Legend: `[x]` done · `[ ]` pending. Each phase closes with `npm run verify` + c
 ## Phase 2 — Core activities
 
 - [x] Horizontal tracking, Vertical tracking
-- [ ] Circle clockwise / counterclockwise (single factory)
-- [ ] Star / asterisk (4, 8, random; return to center)
-- [ ] Saccades horizontal / vertical
-- [ ] Figure eight / infinity (horizontal, vertical)
-- [ ] H pattern (guided / challenge)
-- [ ] Random saccades (3×3 grid, difficulty distance, seeded)
-- [ ] Definition tests across 3 screen sizes
+- [x] Circle clockwise / counterclockwise (single factory)
+- [x] Star / asterisk (4, 8, random; return to center)
+- [x] Saccades horizontal / vertical
+- [x] Figure eight / infinity (horizontal, vertical)
+- [x] H pattern (guided / challenge)
+- [x] Random saccades (3×3 grid, difficulty distance, seeded)
+- [x] Definition tests across 3 screen sizes
 
 ## Phase 3 — Activity Lab
 

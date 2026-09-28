@@ -4,6 +4,7 @@
  */
 import { isSpeedLevel } from './speed';
 import type {
+  ActivityDefinition,
   AnyActivityDefinition,
   ParamField,
   ParamValue,
@@ -35,15 +36,15 @@ function sanitizeValue(
  * Returns a complete, valid parameter set. Unknown keys are dropped; keys that exist in
  * `defaultParams` but not in the schema keep their defaults (fixed parameters).
  */
-export function sanitizeParams(
-  def: AnyActivityDefinition,
+export function sanitizeParams<P extends ParamValues>(
+  def: ActivityDefinition<P>,
   values: Partial<ParamValues> = {},
-): ParamValues {
+): P {
   const out: ParamValues = { ...def.defaultParams };
   for (const field of def.params) {
     out[field.key] = sanitizeValue(field, values[field.key], def.defaultParams[field.key]);
   }
-  return out;
+  return out as P;
 }
 
 export interface InitialParamsOptions {

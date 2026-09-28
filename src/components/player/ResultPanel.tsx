@@ -55,11 +55,7 @@ export function ResultPanel({
           <Button label={t('player.repeat')} icon="replay" variant="secondary" onPress={onRepeat} />
         </>
       }>
-      <View
-        style={styles.hero}
-        accessible
-        accessibilityRole="header"
-        accessibilityLiveRegion="polite">
+      <View style={styles.hero} accessible accessibilityLiveRegion="polite">
         <View
           style={[
             styles.badge,
