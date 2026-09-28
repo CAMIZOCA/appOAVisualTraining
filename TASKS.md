@@ -18,22 +18,22 @@ Legend: `[x]` done · `[ ]` pending. Each phase closes with `npm run verify` + c
 
 ## Phase 1 — Activity engine
 
-- [ ] `types.ts`: ActivityDefinition, ParamField, Segment union, ActivityProgram
-- [ ] `geometry.ts`: normalized ↔ px, safe band, polyline arc length
-- [ ] `paths.ts`: line, polyline, circle, infinity, star spokes, H, grid
-- [ ] `speed.ts`: speed levels, saccade pace, reduce-motion caps
-- [ ] `timeline.ts` + `clock.ts` (worklet-safe, unit tested)
-- [ ] `program.ts`: repetition/time expansion, validation
-- [ ] `random.ts`: seeded PRNG
-- [ ] `registry.ts`
-- [ ] Services: VoiceInstructionService, haptics, sound (tick)
-- [ ] `useActivityEngine` (UI-thread frame callback, pause/resume/stop, countdown)
-- [ ] Player components: canvas, VisualTarget, PathOverlay, markers, HUD, controls, countdown, pre-panel, result panel
-- [ ] Unit tests: timer/clock, timeline, geometry, speed, program
+- [x] `types.ts`: ActivityDefinition, ParamField, Segment union, ActivityProgram
+- [x] `geometry.ts`: normalized ↔ px, safe band, polyline arc length
+- [x] `paths.ts`: line, polyline, circle, infinity, star spokes, H, grid
+- [x] `speed.ts`: speed levels, saccade pace, reduce-motion caps
+- [x] `timeline.ts` + `clock.ts` (worklet-safe, unit tested)
+- [x] `program.ts`: repetition/time expansion, validation
+- [x] `random.ts`: seeded PRNG
+- [x] `registry.ts`
+- [x] Services: VoiceInstructionService, haptics, sound (tick)
+- [x] `useActivityEngine` (UI-thread frame callback, pause/resume/stop, countdown)
+- [x] Player components: canvas, VisualTarget, PathOverlay, markers, HUD, controls, countdown, pre-panel, result panel
+- [x] Unit tests: timer/clock, timeline, geometry, speed, program
 
 ## Phase 2 — Core activities
 
-- [ ] Horizontal tracking, Vertical tracking
+- [x] Horizontal tracking, Vertical tracking
 - [ ] Circle clockwise / counterclockwise (single factory)
 - [ ] Star / asterisk (4, 8, random; return to center)
 - [ ] Saccades horizontal / vertical

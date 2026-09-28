@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   row: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.sm },
   item: {
     flexGrow: 1,
-    flexBasis: 72,
+    flexBasis: 64,
     minHeight: touch.min,
     paddingHorizontal: spacing.sm,
     borderWidth: 1,

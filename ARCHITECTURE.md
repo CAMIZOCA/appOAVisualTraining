@@ -143,7 +143,7 @@ Timing logic (`clock.ts`, `timeline.ts`) is a set of pure functions marked `'wor
 - `PathOverlay`: faint SVG polylines of the program guides. Used for guided mode, the Lab, and H Pattern.
 - `Markers`: dim stationary markers (for example, the inactive saccade target).
 - `SceneStage`: non-target steps (letter, "look far" dim screen, eyes closed, blink, breathe, message).
-- `DebugOverlay` (Developer mode only): coordinates, FPS, progress, state, elapsed, phase, seed. It uses animated text props, so it stays on the UI thread.
+- `DebugOverlay` (Developer mode only): coordinates, FPS, progress, state, elapsed, phase and program meta. The engine only sends snapshots at about 5 Hz while debug is on, so the overlay costs nothing in normal runs.
 
 ## 6. State and persistence
 

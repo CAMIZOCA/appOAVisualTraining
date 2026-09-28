@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 
 import { useHydrated } from '@/hooks/useHydrated';
+import { useVoiceSettings } from '@/hooks/useVoiceSettings';
 import { useT } from '@/i18n';
 import { useColors } from '@/theme';
 
@@ -11,6 +12,7 @@ SplashScreen.preventAutoHideAsync().catch(() => {});
 
 export default function RootLayout() {
   const hydrated = useHydrated();
+  useVoiceSettings();
   const colors = useColors();
   const { t } = useT();
 
