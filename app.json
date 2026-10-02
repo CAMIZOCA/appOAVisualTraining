@@ -2,26 +2,39 @@
   "expo": {
     "name": "OA Visual Training",
     "slug": "oa-visual-training",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "oavisualtraining",
     "userInterfaceStyle": "light",
-    "backgroundColor": "#F7F8F6",
+    "backgroundColor": "#FFFFFF",
     "ios": {
-      "icon": "./assets/expo.icon",
+      "icon": "./assets/images/icon.png",
       "supportsTablet": false,
-      "bundleIdentifier": "com.opticaandina.visualtraining"
+      "bundleIdentifier": "com.opticaandina.visualtraining",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "CFBundleAllowMixedLocalizations": true,
+        "LSApplicationQueriesSchemes": [
+          "whatsapp",
+          "tel",
+          "mailto"
+        ]
+      }
     },
     "android": {
       "package": "com.opticaandina.visualtraining",
       "adaptiveIcon": {
-        "backgroundColor": "#E8F3EE",
+        "backgroundColor": "#FFFFFF",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "permissions": [
+        "android.permission.MODIFY_AUDIO_SETTINGS"
+      ]
     },
     "web": {
       "output": "single",
@@ -32,9 +45,9 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#F7F8F6",
+          "backgroundColor": "#FFFFFF",
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 76
+          "imageWidth": 140
         }
       ],
       [
@@ -44,11 +57,19 @@
           "recordAudioAndroid": false,
           "enableBackgroundPlayback": false
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": false,
       "reactCompiler": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "92982e18-3a92-4d02-b410-080aa0c49da1"
+      }
+    },
+    "owner": "camizoca"
   }
 }

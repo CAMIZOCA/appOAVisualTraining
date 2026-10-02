@@ -2,6 +2,7 @@ import type { es } from './es';
 
 export const en: Record<keyof typeof es, string> = {
   'app.name': 'OA Visual Training',
+  'app.byBrand': 'by Óptica Andina',
   'app.tagline': 'Train and rest your vision with guided activities.',
 
   'tabs.home': 'Home',
@@ -158,6 +159,8 @@ export const en: Record<keyof typeof es, string> = {
   'settings.reduceMotionDesc': 'Caps the maximum speed and removes decorative animations.',
   'settings.info': 'Information',
   'settings.about': 'About',
+  'settings.contactBrand': 'Contact Óptica Andina',
+  'settings.contactBrandDesc': 'Message us on WhatsApp to book your eye check-up.',
   'settings.safety': 'Safety information',
   'settings.developer': 'Developer / test mode',
   'settings.developerDesc': 'Tools to experiment with parameters, texts and debugging.',
@@ -198,6 +201,31 @@ export const en: Record<keyof typeof es, string> = {
   'about.disclaimer':
     'This app does not diagnose, treat or cure visual conditions and does not replace professional ophthalmological or optometric care. It does not perform clinical measurements.',
   'about.version': 'Version {v}',
+  'about.logo': 'Óptica Andina logo',
+  'about.history':
+    'Óptica Andina was founded in 1987 as a family project devoted to eye health. Today we serve Tumbaco with eye exams, contact lenses and vision therapy.',
+  'about.contact': 'Contact',
+  'about.call': 'Call',
+  'about.whatsapp': 'WhatsApp',
+  'about.whatsappDesc': 'Book an appointment',
+  'about.whatsappMessage':
+    'Hello, I am writing from the OA Visual Training app. I would like to book an appointment.',
+  'about.email': 'Email',
+  'about.directions': 'Directions',
+  'about.address': 'Ventura Mall, store 17-2PA (upper floor), Tumbaco, Quito',
+  'about.hours': 'Opening hours',
+  'about.hoursValue': 'Monday to Saturday 10:00–19:00 · Sunday by appointment',
+  'about.more': 'More from Óptica Andina',
+  'about.website': 'Website',
+  'about.blog': 'Eye health articles',
+  'about.instagram': 'Instagram',
+  'about.facebook': 'Facebook',
+
+  'welcome.logo': 'Óptica Andina, since 1987',
+  'welcome.tagline': 'Your vision, our commitment',
+  'welcome.subtitle': 'Guided visual training',
+  'welcome.enter': 'Enter',
+  'welcome.footer': 'Óptica Andina · Tumbaco, Quito · Since 1987',
 
   'voice.done': 'Activity completed. Well done.',
   'voice.paused': 'Paused.',

@@ -6,6 +6,7 @@ import { estimateDurationMs } from '@/activities/core/program';
 import { newSeed } from '@/activities/core/random';
 import type { RunOptions } from '@/activities/core/runOptions';
 import type { AnyActivityDefinition, ParamValues } from '@/activities/core/types';
+import { useReduceMotion } from '@/hooks/useReduceMotion';
 import { useT } from '@/i18n';
 import { voice } from '@/services/voice';
 import { useDev } from '@/store/devStore';
@@ -46,7 +47,7 @@ export function ActivityPlayer({
 }: ActivityPlayerProps) {
   const { l } = useT();
   const devMode = useSettings((s) => s.devMode);
-  const reduceMotion = useSettings((s) => s.reduceMotion);
+  const reduceMotion = useReduceMotion();
   const safeMargin = useSettings((s) => s.safeMargin);
   const setDevParams = useDev((s) => s.setParams);
   const addSession = useSessions((s) => s.add);

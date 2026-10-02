@@ -1,3 +1,4 @@
+import { Image } from 'expo-image';
 import { router } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
 
@@ -5,10 +6,11 @@ import { activities } from '@/activities';
 import { ActivityCard } from '@/components/ActivityCard';
 import { SessionRow } from '@/components/SessionRow';
 import { AppText, Button, Card, Divider, Icon, Screen, Section, StatTile } from '@/components/ui';
+import { brandAssets } from '@/constants/brandAssets';
 import { useT } from '@/i18n';
 import { useSessions } from '@/store/sessionsStore';
 import { useSettings } from '@/store/settingsStore';
-import { radius, spacing, useColors } from '@/theme';
+import { spacing, useColors } from '@/theme';
 import { recommendedActivity } from '@/utils/recommend';
 import { completedCount, currentStreak, minutesPracticed } from '@/utils/stats';
 
@@ -28,12 +30,19 @@ export default function HomeScreen() {
     <Screen topInset>
       <View style={styles.header}>
         <View style={styles.titleRow}>
-          <View style={[styles.logo, { backgroundColor: colors.primary }]}>
-            <Icon name="eye-outline" color={colors.onPrimary} size={22} />
+          <Image
+            source={brandAssets.isotipo}
+            style={styles.logo}
+            contentFit="contain"
+            accessibilityLabel={t('about.logo')}
+            accessible
+          />
+          <View style={styles.flex}>
+            <AppText variant="title">{t('app.name')}</AppText>
+            <AppText variant="caption" color={colors.brandDeep}>
+              {t('app.byBrand')}
+            </AppText>
           </View>
-          <AppText variant="title" style={styles.flex}>
-            {t('app.name')}
-          </AppText>
           {devMode ? (
             <AppText variant="caption" color={colors.warning}>
               {t('dev.banner')}
@@ -140,13 +149,7 @@ const styles = StyleSheet.create({
   flex: { flex: 1 },
   header: { gap: spacing.xs },
   titleRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
-  logo: {
-    width: 36,
-    height: 36,
-    borderRadius: radius.md,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  logo: { width: 44, height: 44 },
   continue: { gap: spacing.sm },
   stats: { flexDirection: 'row', gap: spacing.sm },
   labRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },

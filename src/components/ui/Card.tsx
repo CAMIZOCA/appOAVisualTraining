@@ -9,7 +9,7 @@ interface CardProps {
   accessibilityLabel?: string;
   accessibilityHint?: string;
   style?: ViewStyle;
-  tone?: 'default' | 'accent';
+  tone?: 'default' | 'accent' | 'brand';
 }
 
 export function Card({
@@ -26,7 +26,9 @@ export function Card({
     shadow,
     tone === 'accent'
       ? { backgroundColor: colors.primaryTint, borderColor: colors.primary }
-      : { backgroundColor: colors.surface, borderColor: colors.border },
+      : tone === 'brand'
+        ? { backgroundColor: colors.accentTint, borderColor: colors.accent }
+        : { backgroundColor: colors.surface, borderColor: colors.border },
     style,
   ];
   if (!onPress) return <View style={base}>{children}</View>;

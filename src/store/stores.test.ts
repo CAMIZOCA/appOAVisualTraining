@@ -8,6 +8,7 @@ import { useDev } from './devStore';
 import { useLab } from './labStore';
 import { createSessionId, MAX_RECORDS, useSessions } from './sessionsStore';
 import { DEFAULT_SETTINGS, useSettings } from './settingsStore';
+import { useUi } from './uiStore';
 
 const record = (id: string, extra: Partial<SessionRecord> = {}): SessionRecord => ({
   id,
@@ -109,5 +110,16 @@ describe('settings persistence', () => {
       language: 'en',
       devMode: false,
     });
+  });
+});
+
+describe('ui store', () => {
+  it('starts every launch on the welcome screen and never persists the flag', async () => {
+    expect(useUi.getState().welcomed).toBe(false);
+    useUi.getState().setWelcomed(true);
+    expect(useUi.getState().welcomed).toBe(true);
+    await flush();
+    const keys = await AsyncStorage.getAllKeys();
+    expect(keys.some((k) => k.toLowerCase().includes('ui'))).toBe(false);
   });
 });

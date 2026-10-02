@@ -20,6 +20,7 @@ import type {
   Size,
 } from '@/activities/core/types';
 import { useActivityEngine, type DebugSnapshot } from '@/hooks/useActivityEngine';
+import { useReduceMotion } from '@/hooks/useReduceMotion';
 import { useScreenAwake } from '@/hooks/useScreenAwake';
 import { useT } from '@/i18n';
 import { haptic } from '@/services/haptics';
@@ -123,7 +124,7 @@ function Runner({
   useScreenAwake();
   const insets = useSafeAreaInsets();
   const { t, l, lang } = useT();
-  const reduceMotion = useSettings((s) => s.reduceMotion);
+  const reduceMotion = useReduceMotion();
   const safeMargin = useSettings((s) => s.safeMargin);
   const promptOverrides = useDev((s) => s.promptOverrides[definition.id]);
 

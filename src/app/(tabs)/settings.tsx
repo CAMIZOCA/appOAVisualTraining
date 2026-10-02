@@ -18,6 +18,7 @@ import { useT } from '@/i18n';
 import { resetLocalData } from '@/services/resetData';
 import { useSettings } from '@/store/settingsStore';
 import { spacing } from '@/theme';
+import { contactUrls, openLink } from '@/utils/contact';
 
 const SPEEDS: SpeedLevel[] = ['verySlow', 'slow', 'medium', 'fast'];
 
@@ -183,6 +184,13 @@ export default function SettingsScreen() {
           icon="information-outline"
           title={t('settings.about')}
           onPress={() => router.push('/about')}
+        />
+        <Divider />
+        <ListRow
+          icon="whatsapp"
+          title={t('settings.contactBrand')}
+          subtitle={t('settings.contactBrandDesc')}
+          onPress={() => openLink(contactUrls.whatsapp(t('about.whatsappMessage')))}
         />
         <Divider />
         <ListRow

@@ -2,21 +2,44 @@ import { Platform } from 'react-native';
 
 import { useSettings } from '@/store/settingsStore';
 
+/**
+ * Óptica Andina brand colors (from opticaandina.com.ec): blue `brand` scale for
+ * primary UI, lime `accent` for secondary CTAs. White text on the lime accent fails
+ * WCAG contrast, so `onAccent` is dark.
+ */
+export const brand = {
+  blue50: '#EEF4FC',
+  blue100: '#D6E6F8',
+  blue600: '#2F66A8',
+  blue700: '#284F8D',
+  blue800: '#1F3C6E',
+  blue900: '#162B52',
+  lime50: '#F3FAEB',
+  lime500: '#8DC63F',
+  lime600: '#74A833',
+  lime800: '#496920',
+};
+
 export const palette = {
-  background: '#F7F8F6',
+  background: '#F6F8FB',
   surface: '#FFFFFF',
-  surfaceAlt: '#EEF2EF',
-  text: '#14201B',
-  textMuted: '#55625C',
-  border: '#DCE3DE',
-  primary: '#2E7D5B',
-  primaryPressed: '#256A4C',
-  primaryTint: '#E5F1EB',
+  surfaceAlt: brand.blue50,
+  text: '#1A2840',
+  textMuted: '#5E7285',
+  border: '#D6E1EE',
+  primary: brand.blue600,
+  primaryPressed: brand.blue700,
+  primaryTint: brand.blue50,
   onPrimary: '#FFFFFF',
+  accent: brand.lime500,
+  accentPressed: brand.lime600,
+  accentTint: brand.lime50,
+  onAccent: '#1A2840',
+  brandDeep: brand.blue700,
   danger: '#A8322B',
   dangerTint: '#FBEAE8',
   warning: '#8A5A00',
-  overlay: 'rgba(20, 32, 27, 0.55)',
+  overlay: 'rgba(22, 43, 82, 0.55)',
 };
 
 export type Palette = typeof palette;
@@ -28,10 +51,15 @@ export const highContrastPalette: Palette = {
   text: '#000000',
   textMuted: '#1F1F1F',
   border: '#000000',
-  primary: '#145A3C',
-  primaryPressed: '#0E4630',
-  primaryTint: '#DCEFE5',
+  primary: brand.blue800,
+  primaryPressed: brand.blue900,
+  primaryTint: brand.blue100,
   onPrimary: '#FFFFFF',
+  accent: brand.lime800,
+  accentPressed: '#3A541A',
+  accentTint: '#E2F2CC',
+  onAccent: '#FFFFFF',
+  brandDeep: brand.blue900,
   danger: '#8E1B14',
   dangerTint: '#FBE3E0',
   warning: '#5C3C00',
@@ -97,14 +125,28 @@ export const radius = { sm: 8, md: 12, lg: 16, xl: 24, pill: 999 } as const;
 /** Minimum touch target sizes (dp). */
 export const touch = { min: 48, primary: 56 } as const;
 
+/**
+ * Brand typefaces: Poppins for headings and buttons, Inter for body text. Each weight is
+ * its own family (loaded in the root layout), so text styles set `fontFamily` instead of
+ * `fontWeight` — Android ignores `fontWeight` on custom fonts.
+ */
+export const fonts = {
+  headingBold: 'Poppins_700Bold',
+  headingSemiBold: 'Poppins_600SemiBold',
+  headingMedium: 'Poppins_500Medium',
+  body: 'Inter_400Regular',
+  bodyMedium: 'Inter_500Medium',
+  bodySemiBold: 'Inter_600SemiBold',
+} as const;
+
 export const typography = {
-  display: { fontSize: 28, lineHeight: 34, fontWeight: '700' },
-  title: { fontSize: 22, lineHeight: 28, fontWeight: '700' },
-  heading: { fontSize: 18, lineHeight: 24, fontWeight: '600' },
-  body: { fontSize: 16, lineHeight: 23, fontWeight: '400' },
-  bodyStrong: { fontSize: 16, lineHeight: 23, fontWeight: '600' },
-  small: { fontSize: 14, lineHeight: 20, fontWeight: '400' },
-  caption: { fontSize: 12, lineHeight: 16, fontWeight: '500' },
+  display: { fontSize: 28, lineHeight: 36, fontFamily: fonts.headingBold },
+  title: { fontSize: 22, lineHeight: 30, fontFamily: fonts.headingBold },
+  heading: { fontSize: 18, lineHeight: 26, fontFamily: fonts.headingSemiBold },
+  body: { fontSize: 16, lineHeight: 23, fontFamily: fonts.body },
+  bodyStrong: { fontSize: 16, lineHeight: 23, fontFamily: fonts.bodySemiBold },
+  small: { fontSize: 14, lineHeight: 20, fontFamily: fonts.body },
+  caption: { fontSize: 12, lineHeight: 16, fontFamily: fonts.bodyMedium },
   mono: {
     fontSize: 12,
     lineHeight: 16,
@@ -117,7 +159,7 @@ export type TypographyVariant = keyof typeof typography;
 
 export const shadow = Platform.select({
   ios: {
-    shadowColor: '#0D1F17',
+    shadowColor: brand.blue700,
     shadowOpacity: 0.06,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 3 },

@@ -2,6 +2,7 @@
 export const es = {
   'app.name': 'OA Visual Training',
   'app.tagline': 'Entrena y descansa tu visión con actividades guiadas.',
+  'app.byBrand': 'por Óptica Andina',
 
   'tabs.home': 'Inicio',
   'tabs.activities': 'Actividades',
@@ -160,6 +161,8 @@ export const es = {
   'settings.reduceMotionDesc': 'Limita la velocidad máxima y elimina animaciones decorativas.',
   'settings.info': 'Información',
   'settings.about': 'Acerca de',
+  'settings.contactBrand': 'Contactar a Óptica Andina',
+  'settings.contactBrandDesc': 'Escríbenos por WhatsApp para agendar tu control visual.',
   'settings.safety': 'Información de seguridad',
   'settings.developer': 'Modo desarrollador / pruebas',
   'settings.developerDesc': 'Herramientas para experimentar con parámetros, textos y depuración.',
@@ -200,6 +203,31 @@ export const es = {
   'about.disclaimer':
     'Esta aplicación no diagnostica, trata ni cura condiciones visuales y no reemplaza la atención profesional oftalmológica u optométrica. No realiza mediciones clínicas.',
   'about.version': 'Versión {v}',
+  'about.logo': 'Logo de Óptica Andina',
+  'about.history':
+    'Óptica Andina nació en 1987 como un proyecto familiar dedicado a la salud visual. Hoy atendemos en Tumbaco con exámenes visuales, contactología y terapia visual.',
+  'about.contact': 'Contacto',
+  'about.call': 'Llamar',
+  'about.whatsapp': 'WhatsApp',
+  'about.whatsappDesc': 'Agenda tu cita',
+  'about.whatsappMessage':
+    'Hola, les escribo desde la app OA Visual Training. Quisiera agendar una cita.',
+  'about.email': 'Correo',
+  'about.directions': 'Cómo llegar',
+  'about.address': 'Ventura Mall, local 17-2PA (planta alta), Tumbaco, Quito',
+  'about.hours': 'Horario',
+  'about.hoursValue': 'Lunes a sábado 10:00–19:00 · Domingo con cita previa',
+  'about.more': 'Más de Óptica Andina',
+  'about.website': 'Sitio web',
+  'about.blog': 'Artículos de salud visual',
+  'about.instagram': 'Instagram',
+  'about.facebook': 'Facebook',
+
+  'welcome.logo': 'Óptica Andina, desde 1987',
+  'welcome.tagline': 'Tu visión, nuestro compromiso',
+  'welcome.subtitle': 'Entrenamiento visual guiado',
+  'welcome.enter': 'Entrar',
+  'welcome.footer': 'Óptica Andina · Tumbaco, Quito · Desde 1987',
 
   'voice.done': 'Actividad completada. Buen trabajo.',
   'voice.paused': 'En pausa.',

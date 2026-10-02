@@ -5,13 +5,16 @@ import type { ColorValue } from 'react-native';
 import { Icon } from '@/components/ui';
 import { useT } from '@/i18n';
 import { useSettings } from '@/store/settingsStore';
-import { useColors } from '@/theme';
+import { useUi } from '@/store/uiStore';
+import { fonts, useColors } from '@/theme';
 
 export default function TabLayout() {
   const accepted = useSettings((s) => s.safetyAcceptedAt);
+  const welcomed = useUi((s) => s.welcomed);
   const colors = useColors();
   const { t } = useT();
 
+  if (!welcomed) return <Redirect href="/welcome" />;
   if (!accepted) return <Redirect href="/safety" />;
 
   const icon = (name: string) => {
@@ -28,7 +31,7 @@ export default function TabLayout() {
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.textMuted,
         tabBarStyle: { backgroundColor: colors.surface, borderTopColor: colors.border },
-        tabBarLabelStyle: { fontSize: 12, fontWeight: '600' },
+        tabBarLabelStyle: { fontSize: 12, fontFamily: fonts.bodySemiBold },
         sceneStyle: { backgroundColor: colors.background },
       }}>
       <Tabs.Screen name="index" options={{ title: t('tabs.home'), tabBarIcon: icon('home') }} />

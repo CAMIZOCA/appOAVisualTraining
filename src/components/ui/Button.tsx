@@ -1,11 +1,11 @@
 import { ActivityIndicator, Pressable, StyleSheet, View, type ViewStyle } from 'react-native';
 
-import { radius, spacing, touch, useColors } from '@/theme';
+import { fonts, radius, spacing, touch, useColors } from '@/theme';
 
 import { AppText } from './AppText';
 import { Icon } from './Icon';
 
-type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
+type Variant = 'primary' | 'accent' | 'secondary' | 'ghost' | 'danger';
 
 interface ButtonProps {
   label: string;
@@ -38,6 +38,7 @@ export function Button({
     ? { bg: tint.background, fg: tint.foreground, border: tint.border ?? 'transparent' }
     : {
         primary: { bg: colors.primary, fg: colors.onPrimary, border: colors.primary },
+        accent: { bg: colors.accent, fg: colors.onAccent, border: colors.accent },
         secondary: { bg: colors.surface, fg: colors.text, border: colors.border },
         ghost: { bg: 'transparent', fg: colors.primary, border: 'transparent' },
         danger: { bg: colors.dangerTint, fg: colors.danger, border: colors.dangerTint },
@@ -66,7 +67,12 @@ export function Button({
       ) : (
         <View style={styles.content}>
           {icon ? <Icon name={icon} color={scheme.fg} size={size === 'lg' ? 22 : 20} /> : null}
-          <AppText variant="bodyStrong" color={scheme.fg} numberOfLines={2} center>
+          <AppText
+            variant="bodyStrong"
+            color={scheme.fg}
+            numberOfLines={2}
+            center
+            style={styles.label}>
             {label}
           </AppText>
         </View>
@@ -84,4 +90,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   content: { flexDirection: 'row', alignItems: 'center', gap: spacing.sm },
+  label: { fontFamily: fonts.headingSemiBold },
 });
