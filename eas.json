@@ -17,7 +17,8 @@
   "submit": {
     "production": {
       "ios": {
-        "appleTeamId": "CP42DPZZ22"
+        "appleTeamId": "CP42DPZZ22",
+        "ascAppId": "6818636790"
       }
     }
   }
