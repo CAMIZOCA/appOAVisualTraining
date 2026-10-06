@@ -116,20 +116,22 @@ export default function HomeScreen() {
         </Section>
       ) : null}
 
-      <Card
-        onPress={() => router.push('/lab')}
-        accessibilityLabel={`${t('home.lab')}. ${t('home.labDesc')}`}>
-        <View style={styles.labRow}>
-          <Icon name="flask-outline" color={colors.primary} size={26} />
-          <View style={styles.flex}>
-            <AppText variant="heading">{t('home.lab')}</AppText>
-            <AppText variant="small" muted>
-              {t('home.labDesc')}
-            </AppText>
+      {devMode ? (
+        <Card
+          onPress={() => router.push('/lab')}
+          accessibilityLabel={`${t('home.lab')}. ${t('home.labDesc')}`}>
+          <View style={styles.labRow}>
+            <Icon name="flask-outline" color={colors.primary} size={26} />
+            <View style={styles.flex}>
+              <AppText variant="heading">{t('home.lab')}</AppText>
+              <AppText variant="small" muted>
+                {t('home.labDesc')}
+              </AppText>
+            </View>
+            <Icon name="chevron-right" color={colors.textMuted} />
           </View>
-          <Icon name="chevron-right" color={colors.textMuted} />
-        </View>
-      </Card>
+        </Card>
+      ) : null}
 
       {records.length > 0 ? (
         <Section title={t('home.recent')} boxed>

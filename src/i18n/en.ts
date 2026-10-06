@@ -197,7 +197,7 @@ export const en: Record<keyof typeof es, string> = {
 
   'about.title': 'About',
   'about.body':
-    'OA Visual Training is an MVP built for Óptica Andina to evaluate guided visual activities, their usability, animations, timings and instructions.',
+    'OA Visual Training is the Óptica Andina app with voice-guided visual activities: tracking, saccades, focusing, convergence and rest breaks for your visual wellbeing.',
   'about.disclaimer':
     'This app does not diagnose, treat or cure visual conditions and does not replace professional ophthalmological or optometric care. It does not perform clinical measurements.',
   'about.version': 'Version {v}',
@@ -217,6 +217,7 @@ export const en: Record<keyof typeof es, string> = {
   'about.hoursValue': 'Monday to Saturday 10:00–19:00 · Sunday by appointment',
   'about.more': 'More from Óptica Andina',
   'about.website': 'Website',
+  'about.privacy': 'Privacy policy',
   'about.blog': 'Eye health articles',
   'about.instagram': 'Instagram',
   'about.facebook': 'Facebook',

@@ -199,7 +199,7 @@ export const es = {
 
   'about.title': 'Acerca de',
   'about.body':
-    'OA Visual Training es una versión MVP desarrollada para Óptica Andina con el fin de evaluar actividades visuales guiadas, su usabilidad, animaciones, tiempos e instrucciones.',
+    'OA Visual Training es la app de Óptica Andina con actividades visuales guiadas por voz: seguimiento, movimientos sacádicos, enfoque, convergencia y pausas de descanso para tu bienestar visual.',
   'about.disclaimer':
     'Esta aplicación no diagnostica, trata ni cura condiciones visuales y no reemplaza la atención profesional oftalmológica u optométrica. No realiza mediciones clínicas.',
   'about.version': 'Versión {v}',
@@ -219,6 +219,7 @@ export const es = {
   'about.hoursValue': 'Lunes a sábado 10:00–19:00 · Domingo con cita previa',
   'about.more': 'Más de Óptica Andina',
   'about.website': 'Sitio web',
+  'about.privacy': 'Política de privacidad',
   'about.blog': 'Artículos de salud visual',
   'about.instagram': 'Instagram',
   'about.facebook': 'Facebook',

@@ -160,24 +160,23 @@ export default function SettingsScreen() {
         />
       </Section>
 
-      <Section title={t('settings.developer')} boxed>
-        <ToggleRow
-          label={t('settings.developer')}
-          description={t('settings.developerDesc')}
-          value={s.devMode}
-          onValueChange={(v) => update({ devMode: v })}
-        />
-        {s.devMode ? (
-          <>
-            <Divider />
-            <ListRow
-              icon="flask-outline"
-              title={t('settings.developerTools')}
-              onPress={() => router.push('/developer')}
-            />
-          </>
-        ) : null}
-      </Section>
+      {/* Hidden from regular users; unlocked from About (tap the version 7 times). */}
+      {s.devMode ? (
+        <Section title={t('settings.developer')} boxed>
+          <ToggleRow
+            label={t('settings.developer')}
+            description={t('settings.developerDesc')}
+            value={s.devMode}
+            onValueChange={(v) => update({ devMode: v })}
+          />
+          <Divider />
+          <ListRow
+            icon="flask-outline"
+            title={t('settings.developerTools')}
+            onPress={() => router.push('/developer')}
+          />
+        </Section>
+      ) : null}
 
       <Section title={t('settings.info')} boxed>
         <ListRow

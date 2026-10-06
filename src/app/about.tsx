@@ -1,18 +1,33 @@
 import Constants from 'expo-constants';
 import { Image } from 'expo-image';
+import { useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { AppText, Button, Card, Divider, Icon, ListRow, Screen, Section } from '@/components/ui';
 import { BRAND } from '@/constants/brand';
 import { brandAssets } from '@/constants/brandAssets';
 import { useT } from '@/i18n';
+import { haptic } from '@/services/haptics';
+import { useSettings } from '@/store/settingsStore';
 import { spacing, useColors } from '@/theme';
 import { contactUrls, openLink } from '@/utils/contact';
+
+const DEV_UNLOCK_TAPS = 7;
 
 export default function AboutScreen() {
   const { t } = useT();
   const colors = useColors();
   const external = <Icon name="open-in-new" color={colors.textMuted} size={20} />;
+  const versionTaps = useRef(0);
+
+  const onVersionPress = () => {
+    versionTaps.current += 1;
+    if (versionTaps.current < DEV_UNLOCK_TAPS) return;
+    versionTaps.current = 0;
+    if (useSettings.getState().devMode) return;
+    useSettings.getState().update({ devMode: true });
+    haptic('complete');
+  };
 
   return (
     <Screen>
@@ -99,11 +114,19 @@ export default function AboutScreen() {
           right={external}
           onPress={() => openLink(BRAND.facebook)}
         />
+        <Divider />
+        <ListRow
+          icon="shield-lock-outline"
+          title={t('about.privacy')}
+          right={external}
+          onPress={() => openLink(BRAND.privacyUrl)}
+        />
       </Section>
 
       <View style={styles.app}>
         <AppText variant="heading">{t('app.name')}</AppText>
-        <AppText muted>
+        {/* Hidden gesture: tapping the version 7 times unlocks Developer / Test mode. */}
+        <AppText muted onPress={onVersionPress} suppressHighlighting>
           {t('about.version', { v: Constants.expoConfig?.version ?? '0.1.0' })}
         </AppText>
         <AppText>{t('about.body')}</AppText>

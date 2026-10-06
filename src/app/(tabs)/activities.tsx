@@ -8,11 +8,13 @@ import type { ActivityCategory } from '@/activities/core/types';
 import { ActivityCard } from '@/components/ActivityCard';
 import { AppText, Card, Chip, Icon, Screen } from '@/components/ui';
 import { useT } from '@/i18n';
+import { useSettings } from '@/store/settingsStore';
 import { radius, spacing, useColors } from '@/theme';
 
 export default function ActivitiesScreen() {
   const { t } = useT();
   const colors = useColors();
+  const devMode = useSettings((s) => s.devMode);
   const [filter, setFilter] = useState<ActivityCategory | 'all'>('all');
   const categories = CATEGORIES.filter((c) => activities.byCategory(c).length > 0);
   const list = filter === 'all' ? activities.visible : activities.byCategory(filter);
@@ -24,23 +26,25 @@ export default function ActivitiesScreen() {
         <AppText muted>{t('activities.subtitle')}</AppText>
       </View>
 
-      <Card
-        tone="accent"
-        onPress={() => router.push('/lab')}
-        accessibilityLabel={`${t('activities.labCardTitle')}. ${t('activities.labCardDesc')}`}>
-        <View style={styles.labRow}>
-          <View style={[styles.labIcon, { backgroundColor: colors.primary }]}>
-            <Icon name="flask-outline" color={colors.onPrimary} size={26} />
+      {devMode ? (
+        <Card
+          tone="accent"
+          onPress={() => router.push('/lab')}
+          accessibilityLabel={`${t('activities.labCardTitle')}. ${t('activities.labCardDesc')}`}>
+          <View style={styles.labRow}>
+            <View style={[styles.labIcon, { backgroundColor: colors.primary }]}>
+              <Icon name="flask-outline" color={colors.onPrimary} size={26} />
+            </View>
+            <View style={styles.flex}>
+              <AppText variant="heading">{t('activities.labCardTitle')}</AppText>
+              <AppText variant="small" muted>
+                {t('activities.labCardDesc')}
+              </AppText>
+            </View>
+            <Icon name="chevron-right" color={colors.primary} />
           </View>
-          <View style={styles.flex}>
-            <AppText variant="heading">{t('activities.labCardTitle')}</AppText>
-            <AppText variant="small" muted>
-              {t('activities.labCardDesc')}
-            </AppText>
-          </View>
-          <Icon name="chevron-right" color={colors.primary} />
-        </View>
-      </Card>
+        </Card>
+      ) : null}
 
       <ScrollView
         horizontal

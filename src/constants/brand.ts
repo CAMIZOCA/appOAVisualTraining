@@ -19,6 +19,8 @@ export const BRAND = {
   coordinates: { latitude: -0.2116, longitude: -78.4263 },
   website: 'https://opticaandina.com.ec',
   blog: 'https://opticaandina.com.ec/blog',
+  /** Must match the Privacy Policy URL declared in App Store Connect. */
+  privacyUrl: 'https://claude.ai/artifact/GvGyRUjSfKHzVcAgKw5HoQ',
   instagram: 'https://instagram.com/opticaandina_ec',
   instagramHandle: '@opticaandina_ec',
   facebook: 'https://www.facebook.com/opticavistaandina',
